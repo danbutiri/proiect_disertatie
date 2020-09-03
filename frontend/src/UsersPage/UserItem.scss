@@ -1,0 +1,10 @@
+.UserItem{
+    text-align: center;
+    float: left;
+    
+    .ListColumn{
+        display: inline-block;
+        width: 50%;
+        text-align: left;
+    }
+}

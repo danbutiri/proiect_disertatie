@@ -1,0 +1,15 @@
+.QuestionHeader{
+  width: 100%;
+
+  .left{
+      text-align: left;
+      display: inline-block;
+      width: 90%;
+  }
+
+  .right{
+    text-align: right;
+    display: inline-block;
+    width: 10%;
+  }
+}

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Sriracha');
+
+.Navbar{
+  text-align: center;
+
+  $navbar-color: #092580;
+  .navbar {
+    background-color: $navbar-color!important;
+  }
+
+
+  .container{
+    height: 80px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+    .Logo{
+      color: white;
+      font-family: 'Josefin';
+      font-size: 50px;
+      font-weight: 100;
+    }
+
+    .btnContainer{
+      width: 80%;
+      height: 50px;
+      text-align: right;
+
+      .btn{
+        display: inline;
+        margin-right: 20px;
+      }
+    }
+  }
+
+}

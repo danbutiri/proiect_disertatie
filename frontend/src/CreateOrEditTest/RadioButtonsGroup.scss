@@ -1,0 +1,16 @@
+.radioContainer{
+  width: 100%;
+  
+
+  .left{
+      text-align: left;
+      display: inline-block;
+      width: 80%;
+  }
+
+  .right{
+    text-align: right;
+    display: inline-block;
+    width: 20%;
+  }
+}

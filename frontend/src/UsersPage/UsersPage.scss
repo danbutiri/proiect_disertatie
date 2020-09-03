@@ -1,0 +1,25 @@
+.UsersPage{
+    text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    
+    .UsersColumn{
+        display: inline-block;
+        width: 40%;
+        margin-left: 5%;
+
+        ul{
+            overflow-y: scroll;
+            height: 450px;
+            
+        }
+    
+    
+        .Pagetitle{
+            font-size: 30px;
+            font-family: "Times New Roman", Times, serif;
+        }
+    }
+
+}

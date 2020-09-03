@@ -1,0 +1,24 @@
+.UserItem{
+    text-align: center;
+
+    float: left;
+    width: 100%;
+    
+    .ListLeft{
+        display: inline-block;
+        width: 35%;
+        text-align: left;
+    }
+
+    .ListMiddle{
+        display: inline-block;
+        width: 15%;
+        text-align: left;
+    }
+
+    .ListRight{
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+    }
+}
