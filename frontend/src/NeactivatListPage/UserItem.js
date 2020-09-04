@@ -30,7 +30,7 @@ export default function UserItem(props) {
     console.log(props.user.surname);
     setRol(event.target.value);
     props.updateUser({
-      id: props.user.id,
+      _id: props.user._id,
       username: props.user.username,
       password: props.user.password,
       role: event.target.value,
@@ -44,7 +44,7 @@ export default function UserItem(props) {
   const handleChangeGrupa = (event) => {
     setGrupa(event.target.value);
     props.updateUser({
-      id: props.user.id,
+      _id: props.user._id,
       username: props.user.username,
       password: props.user.password,
       role:  props.user.role,
@@ -58,14 +58,14 @@ export default function UserItem(props) {
   const onClickActivate = (id) => {
 
     props.removeUser(id);
-    //+trimite catre server
+
     setRol();
     setGrupa();
   };
 
 
   return (
-    <li class="list-group-item" key={props.user.id}>
+    <li class="list-group-item" key={props.user._id}>
 
       <div className="UserItem">
 
@@ -112,7 +112,7 @@ export default function UserItem(props) {
         </div>
 
         <div className="ListRight">
-          <Button size="small" variant="contained" color="primary" className={classes.button} startIcon={<PencilIcon />} onClick={() => onClickActivate(props.user.id)}>
+          <Button size="small" variant="contained" color="primary" className={classes.button} startIcon={<PencilIcon />} onClick={() => onClickActivate(props.user._id)}>
             Activeaza
           </Button>
         </div>

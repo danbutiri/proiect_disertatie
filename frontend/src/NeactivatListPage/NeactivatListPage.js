@@ -1,6 +1,7 @@
 import React from 'react';
 import './NeactivatListPage.scss';
 import UserItem from './UserItem';
+import axios from 'axios';
 
 
 let myusers = [
@@ -64,16 +65,49 @@ let myusers = [
 
 function NeactivatListPage(props) {
 
-  const [users, setUsers] = React.useState(myusers);
+  const [users, setUsers] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}/users/get_users_by_role?role=neactivat`, {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(response => {
+      setUsers(response.data);
+    })
+    .catch(error => alert("error"));
+
+  }, []);
+
 
   let updateUser=(user)=> {
     setUsers(users.map( Element => {
-      return Element.id === user.id ? user : Element
+      return Element._id === user._id ? user : Element
     }))
   }
 
   let removeUser=(id)=> {
-    setUsers(users.filter(Element => Element.id !== id));
+
+    //transmite modificarea catre backend, adica acest user devine din neactivat -> student sau prof
+    let myuser = users.filter(Element => Element._id === id)[0];
+    let obj = {
+      role: myuser.role,
+      class_u: myuser.class_u
+    };
+    axios.put(`${process.env.REACT_APP_URL}/users/update_admin/${myuser._id}`, obj,
+    {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(response => {
+    })
+    .catch(error => alert("error"));
+
+
+    // scoate din starea curenta (lista de afisat)
+    setUsers(users.filter(Element => Element._id !== id));
   }
 
   return (
@@ -85,13 +119,14 @@ function NeactivatListPage(props) {
       </div>
 
       <br/><br/>
+
       <ul class="list-group">
-        {users.map(Element =>
-          <UserItem user={Element} updateUser={updateUser} removeUser={removeUser}/>
-          )
+        {users.length > 0 ? users.map(Element =>
+          { 
+            return <UserItem user={Element} updateUser={updateUser} removeUser={removeUser}/>
+          }) : ''
         }
       </ul>
-
 
     </div>
   );

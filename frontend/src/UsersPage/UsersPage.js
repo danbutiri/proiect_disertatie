@@ -1,9 +1,9 @@
 import React from 'react';
 import './UsersPage.scss';
 import UserItem from './UserItem';
+import axios from 'axios';
 
-
-let students = [
+let mystudents = [
   {id:'1201', username: "anaradu", password: "xxx", role: 'student',name: "Radu",surname: "Ana", class_u: '343C1',email: "ana@ceva.com"},
   {id:'1202', username: "mariadd", password: "xxx", role: 'student',name: "Dobrescu",surname: "Maria", class_u: '343C1',email: "ana@ceva.com"},
   {id:'1203', username: "cosminee", password: "xxx", role: 'student',name: "Ene",surname: "Cosmin-Gabriel", class_u: '343C1',email: "ana@ceva.com"},
@@ -18,7 +18,7 @@ let students = [
 ];
 
 
-let profs = [
+let myprofs = [
   {id:'1234', username: "ganea_mihaieugen", password: "xxx", role: 'profesor',name: "Ganea",surname: "Mihai-Eugen", class_u: '',email: "ana@ceva.com"},
   {id:'1234', username: "anadobrici", password: "xxx", role: 'profesor',name: "Dobrici-Enache",surname: "Ana", class_u: '',email: "ana@ceva.com"},
   {id:'1234', username: "laura67", password: "xxx", role: 'profesor',name: "Cucu",surname: "Laura", class_u: '',email: "ana@ceva.com"},
@@ -28,7 +28,35 @@ let profs = [
   {id:'1234', username: "ana.pop.2311", password: "xxx", role: 'profesor',name: "Pop",surname: "Ana", class_u: '',email: "ana@ceva.com"},
   ];
 
+
 function UsersPage(props) {
+
+  const [profs, setProfs] = React.useState([]);
+  const [students, setStudents] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}/users/get_users_by_role?role=student`, {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(response => {
+      setStudents(response.data);
+    })
+    .catch(error => alert("error"));
+
+    axios.get(`${process.env.REACT_APP_URL}/users/get_users_by_role?role=profesor`, {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(response => {
+      setProfs(response.data);
+    })
+    .catch(error => alert("error"));
+
+  }, []);
+
 
   return (
     <div className="UsersPage">

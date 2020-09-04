@@ -56,16 +56,17 @@ const update_password = async (username, newPassword) => {
 
 
 const update_admin = async (id, role, class_u) => {
-    await Users.findByIdAndUpdate(id, role, class_u);
+    return await Users.findByIdAndUpdate(id, {role, class_u});
 };
 
 const get_users = async () => {
-    console.log('cevaaa');
     return await Users.find();
 };
-const get_users_activate = async () => {
-    await Users.find({role: 'neactivat'});
+const get_users_by_role = async (role) => {
+    return await Users.find({role: role});
 };
+
+
 const get_users_id = async () => {
     await Users.findById(id);
 };
@@ -80,7 +81,7 @@ module.exports = {
     update_admin,
     update_password,
     get_users,
-    get_users_activate,
+    get_users_by_role,
     get_users_id,
     get_profile
 }

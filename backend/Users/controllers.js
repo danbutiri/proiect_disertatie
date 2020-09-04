@@ -204,16 +204,12 @@ router.put('/update_admin/:id', authorizeAndExtractToken, authorizeRoles('admin'
             role: {
                 value: role,
                 type: 'alpha'
-            },         
-            class_u: {
-                value: class_u,
-                type: 'ascii'
             }
-      };
+        };
   
       validateFields(fieldsToBeValidated);
       await UsersService.update_admin(id, role, class_u);
-      res.status(200);
+      res.status(200).json();
     } catch (err) {
         // daca primesc eroare, pasez eroarea mai departe la handler-ul de errori declarat ca middleware in start.js 
         next(err);
@@ -234,11 +230,17 @@ router.get('/get_users_id/:id', authorizeAndExtractToken, authorizeRoles('admin,
     }
 
 });
+
+
 // admin vede pg cu toti userii neactivati
-router.get('/get_users_admin_activate', authorizeAndExtractToken, authorizeRoles('admin,profesor'), async (req, res, next) => {  
+router.get('/get_users_by_role', authorizeAndExtractToken, authorizeRoles('admin','profesor'), async (req, res, next) => {  
+    
+    const role = req.query.role;
+    console.log(role);
+
     try {
-        let users = await UsersService.get_users_activate();      
-        res.json(users);
+        let users = await UsersService.get_users_by_role(role);      
+        res.status(200).json(users);
     } catch (err) {
         // daca primesc eroare, pasez eroarea mai departe la handler-ul de errori declarat ca middleware in start.js 
         next(err);
