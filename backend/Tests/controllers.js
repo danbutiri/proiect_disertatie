@@ -24,9 +24,10 @@ router.post('/create_test', authorizeAndExtractToken, authorizeRoles('profesor')
         expires_at,
         available_to
     } = req.body;
-        try {
-            await TestsService.create_test(name,available_at,expires_at,available_to);
-            res.status(200);
+
+    try {
+        await TestsService.create_test(name,available_at,expires_at,available_to);
+        res.status(200).json();
     } catch (err) {
         // daca primesc eroare, pasez eroarea mai departe la handler-ul de errori declarat ca middleware in start.js 
         next(err);
@@ -65,8 +66,8 @@ router.get('/view_test/:id', authorizeAndExtractToken, authorizeRoles('profesor'
 
 router.get('/view_tests_all', authorizeAndExtractToken, authorizeRoles('profesor'), async (req, res, next) => {
     try {
-        let test = await TestsService.view_tests_all();
-        res.status(200).json(test);
+        let tests = await TestsService.view_tests_all();
+        res.status(200).json(tests);
 } catch (err) {
     // daca primesc eroare, pasez eroarea mai departe la handler-ul de errori declarat ca middleware in start.js 
     next(err);

@@ -27,6 +27,10 @@ function Navbar(props) {
 
   }, []);
 
+  const setProfileLogout = () => {
+    setMyProfile(null);
+  };
+
 
   return (
     <div className="Navbar">
@@ -47,21 +51,33 @@ function Navbar(props) {
                       Neactivati
                     </button>
                   </Link>
+                : myProfile != null && myProfile.role == 'profesor' ?
+                  <Link to={`/createdtests`}>
+                  <button type="button" class="btn btn-light btn-lg">
+                    Teste
+                  </button>
+                  </Link>
                 : ''
                 }
 
 
                 {myProfile != null && myProfile.role == 'admin' ?
                   <Link to={`/users`}>
+                    <button type="button" class="btn btn-light btn-lg">
+                      Useri
+                    </button>
+                  </Link>
+                : myProfile != null && myProfile.role == 'profesor' ?
+                  <Link to={`/catalog`}>
                   <button type="button" class="btn btn-light btn-lg">
-                    Useri
+                    Catalog
                   </button>
-                </Link>
+                  </Link>
                 : ''
                 }
 
                 {myProfile != null ? 
-                <MyMenu profile={myProfile}/>
+                <MyMenu profile={myProfile} setProfileLogout={setProfileLogout}/>
                 : 
                 <Link to={`/login`}>
                   <button type="button" class="btn btn-light btn-lg">

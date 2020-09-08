@@ -4,6 +4,7 @@ import AccountMenu from './AccountMenu';
 
 
 function Account(props) {
+
   return (
     <div className="Account">
       <AccountMenu/>

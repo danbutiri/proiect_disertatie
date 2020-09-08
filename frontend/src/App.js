@@ -34,7 +34,7 @@ function App() {
         <Route exact path={`/createdtests/:id`} exact component={TestPage}/>
         <Route exact path={`/newtest`} exact component={CreateOrEditTest}/>
         <Route exact path={`/mygrades`} exact component={MyGrades}/>
-        <Route exact path={`/studentsgrades`} exact component={StudentsGrades}/>
+        <Route exact path={`/catalog`} exact component={StudentsGrades}/>
         <Route exact path={`/activateusers`} exact component={NeactivatListPage}/>
         <Route exact path={`/users`} exact component={UsersPage}/>
         <Route exact path={`/profile`} exact component={MyProfile}/>

@@ -22,7 +22,7 @@ const create_test = async (name, available_at, expires_at, available_to) => {
             expires_at,
             available_to
     });
-    await test.save();
+    return await test.save();
 };
 
 const view_test_id = async (id) => {
@@ -35,7 +35,7 @@ const update_test = async (id,name,available_at,expires_at,available_to) => {
 };
 
 const view_tests_all = async () => {
-    await Tests.find();
+    return await Tests.find();
 };
 
 const view_tests_student = async (id) => {

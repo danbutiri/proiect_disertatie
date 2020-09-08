@@ -3,6 +3,7 @@ import './CreatedTests.scss';
 import TestItem from './TestItem';
 import Button from '@material-ui/core/Button';
 import PlusIcon from '@material-ui/icons/Add';
+import axios from 'axios';
 
 
 let teste = [
@@ -38,7 +39,6 @@ let teste = [
     available_at: '25-01-2020',
     expires_at: '25-01-2020',
     available_to: '333CB',
-    group: '333CB',
     enunt: 'ceva',
     prof: {
       firstname: 'X',
@@ -51,6 +51,25 @@ let teste = [
 
 
 function CreatedTests(props) {
+
+  const [myTests, setMyTests] = React.useState(teste);
+
+  /*
+    React.useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}/users/get_users_by_role?role=student`, {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(response => {
+      setMyTests(response.data);
+    })
+    .catch(error => alert("error"));
+  }, []);
+  */
+
+
+
 
   return (
     <div className="CreatedTests">

@@ -20,7 +20,7 @@ export default function MyMenu(props) {
 
   const handleClickLogout = () => {
     localStorage.removeItem("token");
-    window.location.reload(false);
+    props.setProfileLogout();
   };
 
   return (
@@ -45,10 +45,12 @@ export default function MyMenu(props) {
         </MenuItem>
 
         <MenuItem onClick={handleClose}>
-          <Button variant="contained" color="secondary" onClick={handleClickLogout}>
-            <LogoutIcon /> {"  "}
-              Deconectare
-          </Button>
+          <Link to={`/login`}>
+            <Button variant="contained" color="secondary" onClick={handleClickLogout}>
+              <LogoutIcon /> {"  "}
+                Deconectare
+            </Button>
+          </Link>
         </MenuItem>
       </Menu>
     </div>
